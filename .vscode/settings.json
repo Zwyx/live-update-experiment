@@ -17,5 +17,6 @@
 	"editor.quickSuggestions": {
 		"strings": true
 	},
-	"workbench.settings.openDefaultSettings": false
+	"workbench.settings.openDefaultSettings": false,
+	"cSpell.words": ["VITE"]
 }

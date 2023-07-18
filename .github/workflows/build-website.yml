@@ -1,5 +1,7 @@
 # The site is built on branch `dist`, in folder `docs`,
-# which makes the build compatible with Github Pages and Netlify
+# which makes the build compatible with Github Pages and Netlify;
+
+name: Build website
 
 on:
   push:
@@ -7,7 +9,12 @@ on:
       - main
   workflow_dispatch:
 
-name: Build website
+permissions:
+  contents: write
+
+concurrency:
+  group: "build-website"
+  cancel-in-progress: true
 
 jobs:
   build-website:
@@ -25,15 +32,15 @@ jobs:
           node-version: "${{ env.nvmrc }}"
           cache: npm
 
-      - run: |
+      - env:
+          VITE_ABLY_API_KEY: ${{ secrets.ABLY_API_KEY }}
+        run: |
           npm ci
           npm run build
 
       - run: |
           git fetch
           git switch --orphan dist
-          git checkout main netlify.toml
-          git add netlify.toml
           git add docs
           git config user.name "Zwyx - GitHub Actions"
           git config user.email "29386932+Zwyx@users.noreply.github.com>"

@@ -1,0 +1,15 @@
+name: Push message
+
+on:
+  schedule:
+    # Every ten minutes
+    - cron: 0/10 * * * *
+  workflow_dispatch:
+
+jobs:
+  push-message:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          ABLY_API_KEY: ${{ secrets.ABLY_API_KEY }}
+        run: curl https://rest.ably.io/channels/live-update-experiment/publish --user "$ABLY_API_KEY" --data "name=message&data=Hey, it's $(date)"

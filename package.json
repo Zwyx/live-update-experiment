@@ -11,6 +11,7 @@
 		"prettier": "prettier -w ."
 	},
 	"dependencies": {
+		"@ably-labs/react-hooks": "^2.1.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"lucide-react": "^0.261.0",
