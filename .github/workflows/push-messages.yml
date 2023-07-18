@@ -6,6 +6,10 @@ on:
     - cron: 0/10 * * * *
   workflow_dispatch:
 
+concurrency:
+  group: "push-message"
+  cancel-in-progress: true
+
 jobs:
   push-message:
     runs-on: ubuntu-latest
