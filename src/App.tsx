@@ -57,7 +57,7 @@ export const App = () => {
 
 				{!messages.length && (
 					<div className="text-gray-500 text-center mb-4">
-						(Waiting for messages)
+						(Disabled — it was just an experiment.)
 					</div>
 				)}
 
